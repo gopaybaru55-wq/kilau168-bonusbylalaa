@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Claim System — KILAU168 Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #d97706; 
+            --primary-light: #fbbf24;
+            --bg-dark: #070708;
+            --surface: rgba(255, 255, 255, 0.03);
+            --surface-glass: rgba(13, 13, 15, 0.7);
+            --border: rgba(217, 119, 6, 0.3);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syne', sans-serif;
+            --gold-gradient: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+            --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(7, 7, 8, 0.92), rgba(7, 7, 8, 0.92)), url('https://i.imgur.com/8wQ5Uc1.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #eaddcf; display: flex; flex-direction: column; align-items: center;
+            padding: 110px 0 40px; overflow-x: hidden; min-height: 100vh;
+        }
+
+        /* PREMIUM HEADER & NAV */
+        .header-nav {
+            background: var(--surface-glass); width: 100%; height: auto; min-height: 80px;
+            display: flex; align-items: center; justify-content: center;
+            position: fixed; top: 0; z-index: 1000; border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 10px 20px;
+        }
+        .nav-container {
+            width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; gap: 15px;
+        }
+        .logo-img { height: 40px; width: auto; filter: drop-shadow(0 0 15px rgba(217,119,6,0.6)); }
+        
+        .nav-menu {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; background: rgba(0, 0, 0, 0.4);
+            padding: 6px; border-radius: 50px; border: 1px solid var(--border);
+        }
+        .nav-item {
+            color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; text-transform: uppercase;
+            padding: 10px 18px; border-radius: 50px; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 0.5px; border: 1px solid transparent; display: inline-block;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: var(--glass-gradient); color: var(--primary-light);
+            border-color: var(--border); box-shadow: 0 4px 15px rgba(217, 119, 6, 0.2);
+        }
+
+        /* UTILITY COMPONENT: MARQUEE */
+        .marquee-box {
+            width: 92%; max-width: 450px; background: rgba(217, 119, 6, 0.08); 
+            border: 1px solid var(--border); border-radius: 50px; padding: 12px 20px;
+            margin: 20px 0; overflow: hidden; white-space: nowrap; backdrop-filter: blur(5px);
+        }
+        .marquee-inner {
+            display: inline-block; padding-left: 100%; color: var(--primary-light);
+            font-size: 13px; font-weight: 600; animation: runMarquee 25s linear infinite;
+        }
+        @keyframes runMarquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+
+        /* UTILITY COMPONENT: SLIDER */
+        .slider-box { 
+            width: 92%; max-width: 450px; border-radius: 24px; overflow: hidden; 
+            border: 1px solid var(--border-light); box-shadow: 0 20px 40px rgba(0,0,0,0.7); margin-bottom: 25px;
+        }
+        .slider-track { display: flex; transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1); }
+        .slider-track img { width: 100%; flex-shrink: 0; display: block; }
+
+        /* CONTAINER CARD (GLASSMORPHISM) */
+        .premium-card {
+            width: 92%; max-width: 450px; background: var(--surface-glass); 
+            border: 1px solid var(--border-light); border-radius: 32px; padding: 40px 30px; 
+            margin-bottom: 25px; text-align: center; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative;
+        }
+        .premium-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100%;
+            border-radius: 32px; background: linear-gradient(to bottom, rgba(217,119,6,0.05), transparent);
+            pointer-events: none;
+        }
+
+        /* LIVE QUOTA PROGRESS BAR */
+        .quota-container { margin-bottom: 30px; }
+        .quota-status { display: flex; justify-content: space-between; font-size: 12px; color: var(--primary-light); font-weight: 800; margin-bottom: 10px; letter-spacing: 0.5px; }
+        .quota-bar-bg { width: 100%; height: 8px; background: rgba(0,0,0,0.6); border-radius: 10px; border: 1px solid var(--border-light); overflow: hidden; }
+        .quota-bar-fill { height: 100%; width: 33%; background: var(--gold-gradient); border-radius: 10px; transition: width 0.8s ease; }
+
+        /* MYSTERY BOX VISUAL */
+        .box-wrapper { margin: 25px 0; display: flex; justify-content: center; position: relative; }
+        .box-render { width: 190px; filter: drop-shadow(0 0 25px rgba(217, 119, 6, 0.5)); cursor: pointer; transition: transform 0.3s; }
+        .box-render:hover { transform: scale(1.03); }
+        .box-render.shake { animation: vibrate 0.15s infinite; }
+        @keyframes vibrate { 0%, 100% { transform: rotate(0) translate(0, 0); } 20% { transform: rotate(-2deg) translate(-1px, 1px); } 40% { transform: rotate(2deg) translate(1px, -1px); } 60% { transform: rotate(-1deg) translate(1px, 1px); } 80% { transform: rotate(2deg) translate(-1px, -1px); } }
+
+        /* FORMS & INTERACTION */
+        .input-premium {
+            width: 100%; padding: 18px; margin-bottom: 20px; border-radius: 16px; border: 1px solid var(--border-light);
+            background: rgba(0,0,0,0.5); color: #fff; font-size: 15px; font-weight: 600; outline: none; text-align: center;
+            transition: all 0.3s ease; letter-spacing: 1px;
+        }
+        .input-premium:focus { border-color: var(--primary); box-shadow: 0 0 15px rgba(217, 119, 6, 0.2); background: rgba(0,0,0,0.7); }
+        
+        .btn-gold {
+            width: 100%; background: var(--gold-gradient); color: #fff; border: none; padding: 20px;
+            border-radius: 16px; font-size: 15px; font-weight: 800; cursor: pointer; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(180, 83, 9, 0.3);
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(180, 83, 9, 0.5); filter: brightness(1.1); }
+        .btn-gold:disabled { background: #2a2a2e; color: #666; cursor: not-allowed; transform: none; box-shadow: none; border: 1px solid rgba(255,255,255,0.05); }
+
+        .status-output { margin-top: 15px; font-size: 13px; font-weight: 700; letter-spacing: 0.5px; }
+
+        /* FLOATING ACTION WA */
+        .fab-wa {
+            position: fixed; right: 25px; bottom: 25px; width: 60px; height: 60px; background: #25d366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 1001; animation: floatBounce 2.5s infinite;
+        }
+        @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* MODAL SUCCESS SYSTEM */
+        .modal-blur {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 5, 6, 0.85);
+            display: none; align-items: center; justify-content: center; z-index: 10000; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+        }
+        .modal-card {
+            background: #0f0f12; width: 92%; max-width: 400px; padding: 45px 30px 35px; border-radius: 32px;
+            border: 1px solid var(--border); text-align: center; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+        }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 28px; color: #555; cursor: pointer; transition: color 0.3s; }
+        .modal-close:hover { color: #fff; }
+        
+        .prize-value { font-size: 36px; font-weight: 800; color: #ffd700; margin: 15px 0; text-shadow: 0 0 15px rgba(217, 119, 6, 0.7); }
+        .chat-btn {
+            display: block; background: var(--gold-gradient); color: white; text-decoration: none;
+            padding: 18px; border-radius: 16px; font-weight: 800; margin-top: 25px; font-size: 14px; letter-spacing: 0.5px;
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3); transition: all 0.3s;
+        }
+        .chat-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(217, 119, 6, 0.5); filter: brightness(1.1); }
+
+        .footer-logo-box { width: 92%; max-width: 450px; margin-bottom: 30px; border-radius: 20px; overflow: hidden; border: 1px solid var(--border-light); }
+        .footer-logo-box img { width: 100%; display: block; }
+
+        @media (min-width: 768px) {
+            .nav-container { flex-direction: row; justify-content: space-between; }
+            .nav-menu { padding: 4px; }
+            .nav-item { font-size: 13px; padding: 12px 24px; }
+            body { padding-top: 130px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-nav">
+    <div class="nav-container">
+        <img src="https://i.imgur.com/8wQ5Uc1.png" class="logo-img" alt="Logo">
+        <nav class="nav-menu">
+            <a href="lobby.html" class="nav-item">Lobby Utama</a>
+            <a href="daftar.html" class="nav-item">Daftar Akun</a>
+            <a href="index.html" class="nav-item active">Mystery Box</a>
+            <a href="riwayat.html" class="nav-item">Riwayat Claim</a>
+            <a href="bantuan.html" class="nav-item">Bantuan Live</a>
+        </nav>
+    </div>
+</div>
+
+<div class="modal-blur" id="successModal">
+    <div class="modal-card">
+        <div class="modal-close" onclick="closeModal()">×</div>
+        <div style="font-size: 60px; margin-bottom: 10px;">🎁</div>
+        <h2 style="font-family: var(--font-head); color: var(--primary-light); margin: 0; font-size: 24px; letter-spacing: 0.5px;">BOX TERBUKA!</h2>
+        <div id="prizeAmount" class="prize-value">IDR 0</div>
+        <p style="color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-top: 5px;">
+            Selamat untuk <b id="displayUser" style="color: var(--primary-light);">USER</b>,<br>
+            Screenshot pesan ini sekarang!<br>
+            dan berikan ke Customer Service.
+        </p>
+        <a id="submitClaimBtn" target="_blank" class="chat-btn">KLAIM ADMIN TELEGRAM</a>
+    </div>
+</div>
+
+<div class="marquee-box">
+    <div class="marquee-inner">
+        KILAU168 Mystery Box! Masukkan ID Anda dan buka kotak keberuntungan Anda sekarang. Hadiah menarik menunggu setiap harinya!
+    </div>
+</div>
+
+<div class="slider-box">
+    <div class="slider-track" id="slider">
+        <img src="https://i.imgur.com/tslIcXL.png" alt="Promo 1">
+        <img src="https://i.imgur.com/7QdWmhi.png" alt="Promo 2">
+        <img src="https://i.imgur.com/28gSXXs.png" alt="Promo 3">
+        <img src="https://i.imgur.com/3lBE44Q.png" alt="Promo 4">
+        <img src="https://i.imgur.com/nenvvSY.png" alt="Promo 5">
+        <img src="https://i.imgur.com/enu2hvH.png" alt="Promo 6">
+        <img src="https://i.imgur.com/YpfoGRM.png" alt="Promo 7">
+        <img src="https://i.imgur.com/6VN6juS.png" alt="Promo 8">
+    </div>
+</div>
+
+<div class="premium-card">
+    <div class="quota-container">
+        <div class="quota-status">
+            <span>🔥 SLOT MISTERI BOX:</span>
+            <span id="qCount">5/15 Tersedia</span>
+        </div>
+        <div class="quota-bar-bg">
+            <div id="qBar" class="quota-bar-fill"></div>
+        </div>
+    </div>
+
+    <div class="box-wrapper">
+        <img src="https://i.imgur.com/YYS3RMW.png" class="box-render" id="boxIcon" alt="Mystery Box">
+    </div>
+
+    <input type="text" id="userId" class="input-premium" placeholder="MASUKKAN USER ID ANDA">
+    <button class="btn-gold" id="claimBtn" onclick="processClaim()">BUKA MISTERI BOX</button>
+    <div id="statusMsg" class="status-output"></div>
+</div>
+
+<div class="footer-logo-box">
+    <img src="https://i.imgur.com/8rBhMEk.png" alt="Footer Banner">
+</div>
+
+<a href="bantuan.html" class="fab-wa">
+    <img src="https://img.icons8.com/color/38/whatsapp--v1.png" alt="WhatsApp">
+</a>
+
+<script>
+    function closeModal() { 
+        document.getElementById("successModal").style.display = "none"; 
+        location.reload(); 
+    }
+
+    let sIdx = 0;
+    const totalImages = 8; 
+    setInterval(() => {
+        sIdx = (sIdx + 1) % totalImages;
+        const slider = document.getElementById("slider");
+        if(slider) slider.style.transform = `translate3d(-${sIdx * 100}%, 0, 0)`;
+    }, 4000);
+
+    function processClaim() {
+        const btn = document.getElementById("claimBtn");
+        if (btn.disabled) return;
+
+        const idValue = document.getElementById("userId").value.trim().toUpperCase();
+        const box = document.getElementById("boxIcon");
+        const status = document.getElementById("statusMsg");
+        
+        if(!idValue || idValue.length < 3) {
+            status.innerHTML = "<span style='color:#f87171'>Masukkan User ID yang valid!</span>";
+            return;
+        }
+
+        const hasClaimed = localStorage.getItem("claim_" + idValue);
+        if(hasClaimed) {
+            status.innerHTML = "<span style='color:#f87171'>MAAF! ID " + idValue + " SUDAH PERNAH KLAIM.</span>";
+            return;
+        }
+
+        btn.innerText = "MEMBUKA BOX...";
+        btn.disabled = true;
+        box.classList.add("shake");
+        status.innerHTML = "";
+
+        setTimeout(() => {
+            localStorage.setItem("claim_" + idValue, "true");
+
+            const randomPrize = (Math.floor(Math.random() * (500 - 25 + 1)) + 25) * 1000;
+            document.getElementById("prizeAmount").innerText = "IDR " + randomPrize.toLocaleString('id-ID');
+
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#d97706', '#ffffff'] });
+            document.getElementById("displayUser").innerText = idValue;
+            document.getElementById("successModal").style.display = "flex";
+            
+            box.classList.remove("shake");
+            btn.innerText = "KLAIM BERHASIL";
+
+            const usernameAdmin = "Lalamanzahhhhh"; 
+            const pesanOtomatis = `Halo Admin KILAU168, saya mau Klaim Mystery Box.\n\n👤 User ID : ${idValue}\n🎁 Hadiah : IDR ${randomPrize.toLocaleString('id-ID')}\n\nMohon segera diproses bosku!`;
+            const urlTelegram = `https://t.me/${usernameAdmin}?text=${encodeURIComponent(pesanOtomatis)}`;
+            
+            document.getElementById("submitClaimBtn").href = urlTelegram;
+        }, 2500);
+    }
+
+    function jalankanSimulasiKuota() {
+        const qCount = document.getElementById("qCount");
+        const qBar = document.getElementById("qBar");
+        if(!qCount || !qBar) return;
+
+        setInterval(() => {
+            let kuotaSekarang = parseInt(qCount.innerText);
+            let acakAksi = Math.random();
+            
+            if (acakAksi > 0.4 && kuotaSekarang > 2) {
+                kuotaSekarang--;
+            } else if (acakAksi <= 0.4 && kuotaSekarang < 14) {
+                kuotaSekarang++;
+            }
+            
+            let totalSlot = 15;
+            let persentaseBar = (kuotaSekarang / totalSlot) * 100;
+            
+            qCount.innerText = `${kuotaSekarang}/${totalSlot} Tersedia`;
+            qBar.style.width = `${persentaseBar}%`;
+        }, Math.floor(Math.random() * (7000 - 4000 + 1)) + 4000);
+    }
+    jalankanSimulasiKuota();
+</script>
+</body>
+</html>
