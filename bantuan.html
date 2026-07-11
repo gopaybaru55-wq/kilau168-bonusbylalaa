@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantuan Live CS 24/7 — WARAS4D Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d97706; 
+            --primary-light: #fbbf24;
+            --bg-dark: #070708;
+            --surface-glass: rgba(13, 13, 15, 0.75);
+            --border: rgba(217, 119, 6, 0.35);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syne', sans-serif;
+            --gold-gradient: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+            --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(7, 7, 8, 0.94), rgba(7, 7, 8, 0.94)), url('https://i.imgur.com/8wQ5Uc1.png');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            color: #eaddcf; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            padding: 120px 0 40px; 
+            overflow-x: hidden; 
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION BAR (PILL STYLE & GLASSMORPHISM COHESIVE) */
+        .header-nav {
+            background: var(--surface-glass); 
+            width: 100%; 
+            height: auto; 
+            min-height: 80px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            position: fixed; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            padding: 12px 20px;
+        }
+        .nav-container { 
+            width: 100%; 
+            max-width: 1200px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        .logo-img { 
+            height: 38px; 
+            width: auto; 
+            filter: drop-shadow(0 0 15px rgba(217,119,6,0.5)); 
+        }
+        
+        .nav-menu {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 6px; 
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px; 
+            border-radius: 50px; 
+            border: 1px solid var(--border);
+        }
+        .nav-item {
+            color: rgba(255, 255, 255, 0.8); 
+            text-decoration: none; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            padding: 10px 16px; 
+            border-radius: 50px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 0.5px; 
+            border: 1px solid transparent; 
+            display: inline-block;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: var(--glass-gradient); 
+            color: var(--primary-light);
+            border-color: var(--border); 
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.25);
+        }
+
+        /* CARD BANTUAN PREMIUM */
+        .premium-card {
+            width: 92%; 
+            max-width: 460px; 
+            background: var(--surface-glass); 
+            border: 1px solid var(--border-light); 
+            border-radius: 30px; 
+            padding: 45px 30px; 
+            margin: 20px 0; 
+            text-align: center; 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        .premium-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; right: 0; height: 100%;
+            border-radius: 30px; 
+            background: linear-gradient(to bottom, rgba(217,119,6,0.03), transparent);
+            pointer-events: none;
+        }
+
+        .support-badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid var(--border);
+            color: var(--primary-light);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 16px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .card-title { 
+            font-family: var(--font-head); 
+            font-size: 24px; 
+            color: #fff; 
+            margin-bottom: 12px; 
+            font-weight: 800; 
+            letter-spacing: 0.5px;
+        }
+        .card-desc { 
+            font-size: 14px; 
+            color: #cbd5e1; 
+            line-height: 1.6; 
+            margin-bottom: 35px; 
+        }
+
+        /* LAYOUT TOMBOL CHANNEL BANTUAN */
+        .support-channels { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px; 
+        }
+        
+        .btn-channel {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 14px; 
+            width: 100%; 
+            padding: 18px 25px; 
+            border-radius: 16px; 
+            font-size: 14px; 
+            font-weight: 800; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px; 
+            text-decoration: none; 
+            color: #fff; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .btn-channel img { 
+            width: 24px; 
+            height: 24px; 
+            transition: transform 0.3s ease;
+        }
+        .btn-channel:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+        .btn-channel:hover img {
+            transform: scale(1.15);
+        }
+        
+        /* THEME WARNA MASING-MASING TOMBOL */
+        .btn-tg { 
+            background: linear-gradient(135deg, #229ED9 0%, #177da8 100%); 
+            box-shadow: 0 8px 20px rgba(34, 158, 217, 0.3); 
+        }
+        .btn-tg:hover { 
+            box-shadow: 0 15px 25px rgba(34, 158, 217, 0.5); 
+        }
+        
+        .btn-wa { 
+            background: linear-gradient(135deg, #25D366 0%, #1da850 100%); 
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); 
+        }
+        .btn-wa:hover { 
+            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.5); 
+        }
+        
+        .btn-lc { 
+            background: var(--gold-gradient); 
+            box-shadow: 0 8px 20px rgba(217, 119, 6, 0.3); 
+        }
+        .btn-lc:hover { 
+            box-shadow: 0 15px 25px rgba(217, 119, 6, 0.5); 
+        }
+
+        /* MEDIA QUERIES RESPONSIVE */
+        @media (min-width: 768px) {
+            .nav-container { 
+                flex-direction: row; 
+                justify-content: space-between; 
+            }
+            .nav-item { 
+                font-size: 12px; 
+                padding: 12px 20px; 
+            }
+            body { 
+                padding-top: 140px; 
+            }
+            .premium-card {
+                max-width: 480px;
+                padding: 50px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER & NAVIGATION CONTAINER -->
+<div class="header-nav">
+    <div class="nav-container">
+        <img src="https://i.imgur.com/8wQ5Uc1.png" class="logo-img" alt="Logo WARAS4D">
+        <nav class="nav-menu">
+            <a href="lobby.html" class="nav-item">Lobby Utama</a>
+            <a href="daftar.html" class="nav-item">Daftar Akun</a>
+            <a href="index.html" class="nav-item">Mystery Box</a>
+            <a href="riwayat.html" class="nav-item">Riwayat Claim</a>
+            <a href="bantuan.html" class="nav-item active">Bantuan Live</a>
+        </nav>
+    </div>
+</div>
+
+<!-- BLOCK CARD BANTUAN LIVE UTAMA -->
+<div class="premium-card">
+    <div class="support-badge">🟢 Online Support</div>
+    <h1 class="card-title">LAYANAN DUKUNGAN CS 24/7</h1>
+    <p class="card-desc">Mengalami kendala saat melakukan pengklaiman hadiah atau membutuhkan bantuan teknis seputar akun? Hubungi tim Customer Service profesional kami melalui kanal respons cepat di bawah ini.</p>
+    
+    <div class="support-channels">
+        <!-- LINK TELEGRAM AMBIL DARI USERNAME ADMIN SEBELUMNYA -->
+        <a href="https://t.me/Lalamanzahhhhh" target="_blank" class="btn-channel btn-tg">
+            <img src="https://img.icons8.com/color/48/telegram-app.png" alt="Telegram Icon">
+            Hubungi via Telegram
+        </a>
+        
+        <!-- LINK WHATSAPP MEN MENUJU LINK UTAMA YANG SUDAH DITENTUKAN -->
+        <a href="https://kilauyes.com/" target="_blank" class="btn-channel btn-wa">
+            <img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp Icon">
+            Hubungi via WhatsApp
+        </a>
+        
+        <!-- LINK LIVE CHAT RESMI SAMA MENUJU LOG IN LOBBY -->
+        <a href="https://kilauyes.com/" target="_blank" class="btn-channel btn-lc">
+            <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/48/ffffff/external-chat-chat-flatart-icons-outline-flatarticons-4.png" alt="LiveChat Icon">
+            Hubungi via Live Chat
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
