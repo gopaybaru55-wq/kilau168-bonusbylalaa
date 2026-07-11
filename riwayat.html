@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Claim Resmi — KILAU168 Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d97706; 
+            --primary-light: #fbbf24;
+            --bg-dark: #070708;
+            --surface-glass: rgba(13, 13, 15, 0.75);
+            --border: rgba(217, 119, 6, 0.35);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --font-head: 'Syne', sans-serif;
+            --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(rgba(7, 7, 8, 0.94), rgba(7, 7, 8, 0.94)), url('https://i.imgur.com/8wQ5Uc1.png');
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed;
+            color: #eaddcf; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            padding: 120px 0 40px; 
+            overflow-x: hidden; 
+            min-height: 100vh;
+        }
+
+        /* NAVIGATION BAR BARU (PILL STYLE & GLASSMORPHISM) */
+        .header-nav {
+            background: var(--surface-glass); 
+            width: 100%; 
+            height: auto; 
+            min-height: 80px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            position: fixed; 
+            top: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            padding: 12px 20px;
+        }
+        .nav-container { 
+            width: 100%; 
+            max-width: 1200px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 15px; 
+        }
+        .logo-img { 
+            height: 38px; 
+            width: auto; 
+            filter: drop-shadow(0 0 15px rgba(217,119,6,0.5)); 
+        }
+        
+        .nav-menu {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 6px; 
+            background: rgba(0, 0, 0, 0.5);
+            padding: 6px; 
+            border-radius: 50px; 
+            border: 1px solid var(--border);
+        }
+        .nav-item {
+            color: rgba(255, 255, 255, 0.8); 
+            text-decoration: none; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+            padding: 10px 16px; 
+            border-radius: 50px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            letter-spacing: 0.5px; 
+            border: 1px solid transparent; 
+            display: inline-block;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: var(--glass-gradient); 
+            color: var(--primary-light);
+            border-color: var(--border); 
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.25);
+        }
+
+        /* CONTAINER TRANSAKSI PREMIUM */
+        .premium-card {
+            width: 92%; 
+            max-width: 480px; 
+            background: var(--surface-glass); 
+            border: 1px solid var(--border-light); 
+            border-radius: 30px; 
+            padding: 35px 25px; 
+            margin: 10px 0; 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        .premium-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; left: 0; right: 0; height: 100%;
+            border-radius: 30px; 
+            background: linear-gradient(to bottom, rgba(217,119,6,0.03), transparent);
+            pointer-events: none;
+        }
+
+        /* HEADER TABEL */
+        .table-header-panel {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
+            padding-bottom: 18px; 
+            margin-bottom: 10px;
+        }
+        .table-icon {
+            font-size: 22px;
+            background: rgba(217, 119, 6, 0.15);
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .table-title-text {
+            text-align: left;
+        }
+        .table-title {
+            font-family: var(--font-head); 
+            font-size: 14px; 
+            color: #fff; 
+            letter-spacing: 0.5px; 
+            font-weight: 800; 
+            text-transform: uppercase;
+        }
+        .table-subtitle {
+            font-size: 11px;
+            color: var(--primary-light);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* SCROLLABLE TABLE SYSTEM */
+        .history-scroll { 
+            max-height: 420px; 
+            overflow-y: auto; 
+            padding-right: 5px; 
+            margin-top: 5px;
+        }
+        .history-scroll::-webkit-scrollbar { 
+            width: 4px; 
+        }
+        .history-scroll::-webkit-scrollbar-thumb { 
+            background: var(--primary); 
+            border-radius: 10px; 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        tr { 
+            transition: background 0.3s ease; 
+        }
+        tr:hover { 
+            background: rgba(255,255,255,0.02); 
+        }
+        td { 
+            padding: 16px 10px; 
+            border-bottom: 1px solid rgba(255,255,255,0.03); 
+            font-size: 13.5px;
+            color: #cbd5e1; 
+            text-align: left; 
+            font-weight: 500;
+        }
+        td.user-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e2e8f0;
+        }
+        td.user-cell::before {
+            content: '👤';
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        td.amount-cell { 
+            text-align: right; 
+            color: var(--primary-light); 
+            font-weight: 700; 
+            letter-spacing: 0.5px;
+        }
+
+        /* LIVE POPUP NOTIFIKASI DI POJOK LAYAR */
+        #notif-container { 
+            position: fixed; 
+            bottom: 25px; 
+            left: 25px; 
+            z-index: 9999; 
+            pointer-events: none; 
+        }
+        .live-notif {
+            background: rgba(15, 15, 18, 0.9); 
+            padding: 15px 20px; 
+            border-radius: 20px; 
+            border: 1px solid var(--border);
+            margin-bottom: 12px; 
+            width: 290px; 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            font-size: 13px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7); 
+            opacity: 1; 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.5s ease;
+            transform: translateY(0);
+        }
+
+        /* MEDIA QUERIES UNTUK RESPONSIVE DESKTOP */
+        @media (min-width: 768px) {
+            .nav-container { 
+                flex-direction: row; 
+                justify-content: space-between; 
+            }
+            .nav-item { 
+                font-size: 12px; 
+                padding: 12px 20px; 
+            }
+            body { 
+                padding-top: 140px; 
+            }
+            .premium-card {
+                max-width: 520px;
+                padding: 40px 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="notif-container"></div>
+
+<div class="header-nav">
+    <div class="nav-container">
+        <img src="https://i.imgur.com/8wQ5Uc1.png" class="logo-img" alt="Logo KILAU168">
+        <nav class="nav-menu">
+            <a href="lobby.html" class="nav-item">Lobby Utama</a>
+            <a href="daftar.html" class="nav-item">Daftar Akun</a>
+            <a href="index.html" class="nav-item">Mystery Box</a>
+            <a href="riwayat.html" class="nav-item active">Riwayat Claim</a>
+            <a href="bantuan.html" class="nav-item">Bantuan Live</a>
+        </nav>
+    </div>
+</div>
+
+<div class="premium-card">
+    <div class="table-header-panel">
+        <div class="table-icon">⚡</div>
+        <div class="table-title-text">
+            <div class="table-title">Live Transaksi</div>
+            <div class="table-subtitle">20 Data Penukaran Mystery Box Teraktual</div>
+        </div>
+    </div>
+    
+    <div class="history-scroll">
+        <table id="hTable"></table>
+    </div>
+</div>
+
+<script>
+    // Fungsi generator data simulasi real-time transaksi klaim user lain
+    function showNotif() {
+        const container = document.getElementById('notif-container');
+        
+        // Pengaturan prefix nama random penambah kesan real-time
+        const uPrefix = ["WIN","BOSS","JP","VIP","MEGA","LUCKY"];
+        const user = uPrefix[Math.floor(Math.random() * uPrefix.length)] + Math.floor(Math.random() * 89 + 10) + "***";
+        
+        // Pengaturan range nominal acak IDR 20.000 s/d IDR 300.000
+        const amount = (Math.floor(Math.random() * (300 - 20 + 1)) + 20) * 1000;
+        
+        // 1. Pembuatan element floating alert popup di pojok kiri bawah
+        const n = document.createElement('div');
+        n.className = 'live-notif';
+        n.innerHTML = `
+            <div style="background:var(--primary); padding:10px; border-radius:12px; color:white; font-size:16px; display:flex; align-items:center; justify-content:center;">🎁</div>
+            <div>
+                <b style="color:#fff;">${user}</b> Baru saja mengklaim!<br>
+                <span style="color:var(--primary-light); font-weight:700;">IDR ${amount.toLocaleString('id-ID')}</span>
+            </div>
+        `;
+        container.appendChild(n);
+        
+        // 2. Manipulasi dan pembaruan data baris Tabel Utama halaman secara instan
+        const tbl = document.getElementById("hTable");
+        if(tbl) {
+            const row = tbl.insertRow(0);
+            row.innerHTML = `
+                <td class="user-cell">${user}</td>
+                <td class="amount-cell">IDR ${amount.toLocaleString('id-ID')}</td>
+            `;
+            // Batasi data tabel hanya menampilkan maksimal 20 baris agar performa rendering browser tetap enteng
+            if(tbl.rows.length > 20) tbl.deleteRow(20);
+        }
+        
+        // Animasi transisi menghapus popup toast setelah 4 detik aktif
+        setTimeout(() => { 
+            n.style.opacity = "0"; 
+            n.style.transform = "translateY(10px)";
+            setTimeout(() => n.remove(), 500); 
+        }, 4000);
+    }
+
+    // Interval memicu data baru masuk otomatis setiap 6 detik sekali
+    setInterval(showNotif, 6000);
+    
+    // Inject data acak awal (Pre-load data) sebanyak 8 baris langsung ketika halaman pertama kali dibuka
+    for(let i = 0; i < 8; i++) { 
+        setTimeout(showNotif, i * 350); 
+    }
+</script>
+</body>
+</html>
